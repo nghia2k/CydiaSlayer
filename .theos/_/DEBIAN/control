@@ -1,9 +1,9 @@
-Package: com.yourcompany.b
-Name: b
+Package: com.nghiabeta.cydiaslayer
+Name: CydiaSlayer
 Architecture: iphoneos-arm
 Description: An awesome application!
-Maintainer: System Administrator
-Author: System Administrator
+Maintainer: NTNghia
+Author: NTNghia
 Section: Utilities
 Version: 0.0.1-1+debug
-Installed-Size: 464
+Installed-Size: 644

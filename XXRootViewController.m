@@ -60,7 +60,7 @@ UIApplication.sharedApplication.statusBarHidden=YES;
 
     // Button 4
 	UIButton *button4 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button4 setTitle:@"Check depend files" forState:UIControlStateNormal];
+    [button4 setTitle:@"Check needed files" forState:UIControlStateNormal];
     [button4 sizeToFit];
     CGRect rect4 = [self.view bounds];
     button4.center = CGPointMake(rect4.size.width/2,220);
@@ -79,9 +79,9 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     [self.view addSubview:label];
     
     // Label 2
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-45,self.view.frame.size.height/2+200,100,20)];
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-55,self.view.frame.size.height/2+200,130,20)];
     label2.textColor = [UIColor blackColor];
-    label2.text = @"DevNTNghia";
+    label2.text = @"© DevNTNghia";
     label2.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:label2];
     
@@ -101,31 +101,13 @@ UIApplication.sharedApplication.statusBarHidden=YES;
 
     UILabel *label5 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+85,100,100,20)];
     label5.textColor = [UIColor blackColor];
-    label5.text = @"beta8";
+    label5.text = @"beta9";
     label5.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:label5];
 
-    UILabel *label6 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+230,400,200,50)];
-    label6.textColor = [UIColor blackColor];
-    label6.text = @"Pin:";
-    [self.view addSubview:label6];
-
-    UILabel *ptpin = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+230,self.view.frame.size.height/2+200,200,50)];
-    ptpin.textColor = [UIColor blackColor];
-    ptpin.text = @"0%";
-    ptpin.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:ptpin];
-    
-    // Battery Percent
-    UIDevice *dienthoai = [UIDevice currentDevice];
- 	[dienthoai setBatteryMonitoringEnabled:YES];
-    float batteryLevel = [dienthoai batteryLevel] * 100;
-    NSString *phantram = [NSString stringWithFormat:@"%.f%%",batteryLevel];
-    ptpin.text = phantram;
-
 }
 
-- (void)buttonPressed {
+-(void)buttonPressed {
 	UIAlertController *alertb = [UIAlertController alertControllerWithTitle:@"Respring?" message:@"Are you sure? This action will respring your device." preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *actiony = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 		system("sudo respring");
@@ -138,7 +120,7 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     [self presentViewController:alertb animated:YES completion:nil];
 }
 
-- (void)buttonPressed2 {
+-(void)buttonPressed2 {
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reboot?" message:@"Are you sure? This action will reboot your device." preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         system("sudo reboot");
@@ -151,27 +133,39 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)buttonPressed3 {
+-(void)buttonPressed3 {
 	  
 	NSLog(@"Pressed");
 
     }
 
-- (void)buttonPressed4 {
+-(void)buttonPressed4 {
 
 	UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"WARNING!" message:@"Do you want Un-Jaibreak?" preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     	UIAlertController *alertacc = [UIAlertController alertControllerWithTitle:@"Disclaimer" message:@"First, thanks you for being Beta Tester!. I was created this tweak application because I found some relax when making and debugging it. Second, the commandline for FUCK Cydia need to be re-wrote and link to this button. It is very difficult because I have to re-write from Unix Script to Objective-C or make the Unix work in app. Hopefully, I can finish this app in some nearly day..." preferredStyle:UIAlertControllerStyleAlert];
     	UIAlertAction *actionaa5 = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     		NSLog(@"Thanks!");
+    		UIAlertController *chekbit = [UIAlertController alertControllerWithTitle:@"64bit or 32bit?" message:@"Is your iDevice 64bit or 32bit?" preferredStyle:UIAlertControllerStyleAlert];
+    		UIAlertAction *is32bit = [UIAlertAction actionWithTitle:@"32bit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    	    	UIAlertController *alertunjb32 = [UIAlertController alertControllerWithTitle:@"PLEASE WAIT" message:@"Please wait until the iDevice reboot. Do not touch anything. It may crash the commandline." preferredStyle:UIAlertControllerStyleAlert];
+    			[self presentViewController:alertunjb32 animated:YES completion:nil];
+    			system("sudo unjb32");
+    		}];
+    		UIAlertAction *is64bit = [UIAlertAction actionWithTitle:@"64bit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+				UIAlertController *alertunjb64 = [UIAlertController alertControllerWithTitle:@"PLEASE WAIT" message:@"Please wait until the iDevice reboot. Do not touch anything. It may crash the commandline." preferredStyle:UIAlertControllerStyleAlert];
+    			[self presentViewController:alertunjb64 animated:YES completion:nil];
+    			system("sudo unjb64");
+    		}];
+    		[chekbit addAction:is32bit];
+    		[chekbit addAction:is64bit];
+    		[self presentViewController:chekbit animated:YES completion:nil];
     	}];
     	[alertacc addAction:actionaa5];
     	[self presentViewController:alertacc animated:YES completion:nil];
     }];
     UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
     	NSLog(@"User said NO!");
-    	UIAlertController *alertunjb = [UIAlertController alertControllerWithTitle:@"PLEASE WAIT" message:@"Please wait until the iDevice reboot. Do not do anything. It may crash the commandline." preferredStyle:UIAlertControllerStyleAlert];
-    	[self presentViewController:alertunjb animated:YES completion:nil];
     	system("sudo unjb");
     }];
     [alert1 addAction:action3];
@@ -179,7 +173,7 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     [self presentViewController:alert1 animated:YES completion:nil];
 }
 
-- (void)buttonPressed5 {
+-(void)buttonPressed5 {
 	UIAlertController *alertab = [UIAlertController alertControllerWithTitle:@"Check file?" message:@"Are you sure? This action will check depend files in your device." preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *actione = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"User Said YES");
@@ -188,6 +182,7 @@ UIApplication.sharedApplication.statusBarHidden=YES;
         NSString *filePath3 = @"/usr/bin";
         NSString *filePath4 = @"/usr/libexec";
         NSString *filePath5 = @"/usr/sbin";
+        NSString *CydiaPath = @"/Applications/Cydia.app";
 		if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
 		{
 			if ([[NSFileManager defaultManager] fileExistsAtPath:filePath2])
@@ -198,8 +193,15 @@ UIApplication.sharedApplication.statusBarHidden=YES;
 					{
 						if ([[NSFileManager defaultManager] fileExistsAtPath:filePath5])
 						{
-							UIAlertController *checkdepend = [UIAlertController alertControllerWithTitle:@"SUCCESS!" message:@"All needed files is there! You can use CydiaSlayer without any problems! Please relaunch the application." preferredStyle:UIAlertControllerStyleAlert];
-							[self presentViewController:checkdepend animated:YES completion:nil];
+							if ([[NSFileManager defaultManager] fileExistsAtPath:CydiaPath])
+							{
+								UIAlertController *checkdepend = [UIAlertController alertControllerWithTitle:@"SUCCESS!" message:@"All needed files and folders is there! You can use CydiaSlayer without any problems! Please relaunch the application." preferredStyle:UIAlertControllerStyleAlert];
+								[self presentViewController:checkdepend animated:YES completion:nil];
+
+							} else {
+								UIAlertController *CPfailed = [UIAlertController alertControllerWithTitle:@"ERROR!" message:@"The folder /Applications/Cydia.app is not there. If you want to Un-Jailbreak, please re-install Cydia Bootstrap!" preferredStyle:UIAlertControllerStyleAlert];
+								[self presentViewController:CPfailed animated:YES completion:nil];
+							}
 						} else {
 							UIAlertController *checkfailed5 = [UIAlertController alertControllerWithTitle:@"ERROR!" message:@"The folder /usr/sbin is not there. If you want to Un-Jailbreak, please re-install Cydia Bootstrap!" preferredStyle:UIAlertControllerStyleAlert];
 							[self presentViewController:checkfailed5 animated:YES completion:nil];
@@ -220,11 +222,6 @@ UIApplication.sharedApplication.statusBarHidden=YES;
 			UIAlertController *checkfailed = [UIAlertController alertControllerWithTitle:@"ERROR!" message:@"All needed files is not there! Please re-install the application." preferredStyle:UIAlertControllerStyleAlert];
 			[self presentViewController:checkfailed animated:YES completion:nil];
 		}
-        UIAlertController *alertabb = [UIAlertController alertControllerWithTitle:@"ERROR" message:@"This function is currently not available. NTNghia will add it when he fixed all bugs." preferredStyle:UIAlertControllerStyleAlert];
-    	UIAlertAction *actionee = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    	}];
-    	[alertabb addAction:actionee];
-    	[self presentViewController:alertabb animated:YES completion:nil];
     }];
     UIAlertAction *actione2 = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog (@"User said NO");
