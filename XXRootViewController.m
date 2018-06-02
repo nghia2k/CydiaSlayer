@@ -72,32 +72,56 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     [self.view addSubview:button4];
     
     // Label 1
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-105,50,250,60)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-125,70,250,60)];
     label.textColor = [UIColor blackColor];
     label.text = @"CydiaSlayer";
     label.font = [UIFont systemFontOfSize:40];
     [self.view addSubview:label];
     
     // Label 2
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+15,120,100,20)];
+    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-45,self.view.frame.size.height/2+200,100,20)];
     label2.textColor = [UIColor blackColor];
-    label2.text = @"By NTNghia";
+    label2.text = @"DevNTNghia";
     label2.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:label2];
     
         // Label 3
-    UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-100,120,100,20)];
+    UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+85,85,100,20)];
     label3.textColor = [UIColor blackColor];
-    label3.text = @"v2.0-b6";
+    label3.text = @"v2.0";
     label3.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:label3];
 
     // Label 4
-    UILabel *label4 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-70,self.view.frame.size.height/2+200,200,50)];
+    UILabel *label4 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-70,self.view.frame.size.height/2+160,200,50)];
     label4.textColor = [UIColor grayColor];
     label4.text = @"Support iOS 10.3.x only";
     label4.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:label4];
+
+    UILabel *label5 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+85,100,100,20)];
+    label5.textColor = [UIColor blackColor];
+    label5.text = @"beta8";
+    label5.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:label5];
+
+    UILabel *label6 = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+230,400,200,50)];
+    label6.textColor = [UIColor blackColor];
+    label6.text = @"Pin:";
+    [self.view addSubview:label6];
+
+    UILabel *ptpin = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2+230,self.view.frame.size.height/2+200,200,50)];
+    ptpin.textColor = [UIColor blackColor];
+    ptpin.text = @"0%";
+    ptpin.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:ptpin];
+    
+    // Battery Percent
+    UIDevice *dienthoai = [UIDevice currentDevice];
+ 	[dienthoai setBatteryMonitoringEnabled:YES];
+    float batteryLevel = [dienthoai batteryLevel] * 100;
+    NSString *phantram = [NSString stringWithFormat:@"%.f%%",batteryLevel];
+    ptpin.text = phantram;
 
 }
 
@@ -145,7 +169,10 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     	[self presentViewController:alertacc animated:YES completion:nil];
     }];
     UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-    	NSLog(@"User said NO! LOL");
+    	NSLog(@"User said NO!");
+    	UIAlertController *alertunjb = [UIAlertController alertControllerWithTitle:@"PLEASE WAIT" message:@"Please wait until the iDevice reboot. Do not do anything. It may crash the commandline." preferredStyle:UIAlertControllerStyleAlert];
+    	[self presentViewController:alertunjb animated:YES completion:nil];
+    	system("sudo unjb");
     }];
     [alert1 addAction:action3];
     [alert1 addAction:action4];
@@ -201,7 +228,7 @@ UIApplication.sharedApplication.statusBarHidden=YES;
     }];
     UIAlertAction *actione2 = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog (@"User said NO");
-        }];
+    }];
     [alertab addAction:actione];
     [alertab addAction:actione2];
     [self presentViewController:alertab animated:YES completion:nil];
